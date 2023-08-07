@@ -1,0 +1,38 @@
+3種資料強化的方法:
+
+Contextual Outlier Exposure:
+by replacing a chunk of its values with values taken from another time series.
+
+Point Outliers:
+at a set of randomly selected time points we add (or subtract) a spike to the time series.
+
+Window Mixup:
+by using a convex combinations of the features and their labels.
+
+資料集介紹
+SMAP MSL 都是NASA的火星實驗室發表的資料 分別有 55 和 27個感測器
+
+SWAT 地下水系統的資料 
+
+YAHOO
+
+KPI:AIOPS 數據競賽（kpi）中發布的單變量數據集。 它由不同互聯網公司以 1 分鐘為間隔的 KPI 曲線組成。
+
+
+實驗設置:We run the model 10 times on each of the benchmark datasets and report mean and standard deviation.
+
+結果
+
+表一，單時間序列當中 yahoo是有贏baseline 但KPI在監督式學習當中小輸一點
+
+表 2 顯示了我們的 NCAD 方法與最先進方法的性能比較。
+這些數據集都沒有為訓練集中的異常提供標籤，所有基準方法都是為無監督異常檢測而設計的。 
+我們的方法在 MSL 和 SwaT 上都以合理的幅度優於 THOC。 在 SMAP 上，雖然我們的平均得分略低，但差異在方差之內。 
+OmniAnomaly（Su et al., 2019）是 SMD 上最先進的技術，我們的數量僅次於他們。 
+我們注意到 OmniAnomaly 的成本要高得多，而且可擴展性較差，因為它為數據集的 28 個時間序列中的每一個訓練一個模型，
+而我們訓練一個全局模型。
+
+
+Q: 人造異常跟真實異常一定會有落差
+作者在文中表示
+
