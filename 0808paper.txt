@@ -36,3 +36,217 @@ OmniAnomaly（Su et al., 2019）是 SMD 上最先進的技術，我們的數量�
 Q: 人造異常跟真實異常一定會有落差
 作者在文中表示
 
+from pptx import Presentation
+from pptx.util import Inches
+import pandas as pd
+
+def create_person_table(slide_con,data):
+    rows = 3
+    cols = 8
+    left = top = Inches(1.0)
+    width = Inches(8.0)
+    height = Inches(0.8)
+
+    table = shapes.add_table(rows, cols, left, top, width, height).table
+
+    # set column widths
+    table.columns[0].width = Inches(0.8)
+    #table.columns[1].width = Inches(4.0)
+
+    # write body cells
+    table.cell(0, 0).merge(table.cell(0, 1))
+    table.cell(0, 2).merge(table.cell(0, 3))
+    table.cell(0, 4).merge(table.cell(0, 5))
+    table.cell(0, 6).merge(table.cell(0, 7))
+    table.cell(0, 0).text = '繳款6期內'
+    table.cell(0, 2).text = '繳款6~11期'
+    table.cell(0, 4).text = '繳款12~23期'
+    table.cell(0, 6).text = '繳款24期以上'
+
+    # write column headings
+    table.cell(1, 0).text = '逾放金額'
+    table.cell(1, 1).text = '件數'
+    table.cell(1, 2).text = '逾放金額'
+    table.cell(1, 3).text = '件數'
+    table.cell(1, 4).text = '逾放金額'
+    table.cell(1, 5).text = '件數' 
+    table.cell(1, 6).text = '逾放金額'
+    table.cell(1, 7).text = '件數'
+    
+    for i in range(len(data)):
+        if i %2==0:
+            table.cell(2, i).text = str(round(data[i]/1000000,1))
+        else:
+            table.cell(2, i).text = str(data[i])
+    return slide_con
+
+def create_house_table(slide_con,house_data):
+    rows = 3
+    cols = 6
+    left = top = Inches(1.0)
+    width = Inches(8.0)
+    height = Inches(0.8)
+
+    table = shapes.add_table(rows, cols, left, top, width, height).table
+
+    # set column widths
+    table.columns[0].width = Inches(0.8)
+    #table.columns[1].width = Inches(4.0)
+
+    # write body cells
+    table.cell(0, 0).merge(table.cell(0, 1))
+    table.cell(0, 2).merge(table.cell(0, 3))
+    table.cell(0, 4).merge(table.cell(0, 5))
+    table.cell(0, 0).text = '繳款12期內'
+    table.cell(0, 2).text = '繳款12~23期'
+    table.cell(0, 4).text = '繳款24期以上'
+
+    # write column headings
+    table.cell(1, 0).text = '逾放金額'
+    table.cell(1, 1).text = '件數'
+    table.cell(1, 2).text = '逾放金額'
+    table.cell(1, 3).text = '件數'
+    table.cell(1, 4).text = '逾放金額'
+    table.cell(1, 5).text = '件數' 
+
+    
+    for i in range(len(house_data)):
+        if i %2==0:
+            table.cell(2, i).text = str(round(house_data[i]/1000000,1))
+        else:
+            table.cell(2, i).text = str(house_data[i])
+    return slide_con
+
+def create_person_moneytable(slide_con,data):
+    rows = 3
+    cols = 8
+    left = top = Inches(3.0)
+    width = Inches(8.0)
+    height = Inches(0.8)
+
+    table = shapes.add_table(rows, cols, left, top, width, height).table
+
+    # set column widths
+    table.columns[0].width = Inches(0.8)
+    #table.columns[1].width = Inches(4.0)
+
+    # write body cells
+    table.cell(0, 0).merge(table.cell(0, 1))
+    table.cell(0, 2).merge(table.cell(0, 3))
+    table.cell(0, 4).merge(table.cell(0, 5))
+    table.cell(0, 6).merge(table.cell(0, 7))
+    table.cell(0, 0).text = '0~49萬'
+    table.cell(0, 2).text = '50~99萬'
+    table.cell(0, 4).text = '100~149萬'
+    table.cell(0, 6).text = '150萬以上'
+
+    # write column headings
+    table.cell(1, 0).text = '金額'
+    table.cell(1, 1).text = '件數'
+    table.cell(1, 2).text = '金額'
+    table.cell(1, 3).text = '件數'
+    table.cell(1, 4).text = '金額'
+    table.cell(1, 5).text = '件數' 
+    table.cell(1, 6).text = '金額'
+    table.cell(1, 7).text = '件數'
+    
+    for i in range(len(data)):
+        if i %2==0:
+            table.cell(2, i).text = str(round(data[i]/1000000,1))
+        else:
+            table.cell(2, i).text = str(data[i])
+    return slide_con
+
+def create_house_moneytable(slide_con,house_data):
+    rows = 3
+    cols = 6
+    left = top = Inches(3.0)
+    width = Inches(8.0)
+    height = Inches(0.8)
+
+    table = shapes.add_table(rows, cols, left, top, width, height).table
+
+    # set column widths
+    table.columns[0].width = Inches(0.8)
+    #table.columns[1].width = Inches(4.0)
+
+    # write body cells
+    table.cell(0, 0).merge(table.cell(0, 1))
+    table.cell(0, 2).merge(table.cell(0, 3))
+    table.cell(0, 4).merge(table.cell(0, 5))
+    table.cell(0, 0).text = '0~499萬'
+    table.cell(0, 2).text = '500~999萬'
+    table.cell(0, 4).text = '1,000萬以上'
+
+    # write column headings
+    table.cell(1, 0).text = '金額'
+    table.cell(1, 1).text = '件數'
+    table.cell(1, 2).text = '金額'
+    table.cell(1, 3).text = '件數'
+    table.cell(1, 4).text = '金額'
+    table.cell(1, 5).text = '件數' 
+
+    
+    for i in range(len(house_data)):
+        if i %2==0:
+            table.cell(2, i).text = str(round(house_data[i]/1000000,1))
+        else:
+            table.cell(2, i).text = str(house_data[i])
+    return slide_con
+
+def create_notice_table(slide_con,notice_data):
+    rows = 2
+    cols = 7
+    left = top = Inches(3.0)
+    width = Inches(8.0)
+    height = Inches(0.8)
+
+    table = shapes.add_table(rows, cols, left, top, width, height).table
+
+    # set column widths
+    table.columns[0].width = Inches(0.8)
+    #table.columns[1].width = Inches(4.0)
+    
+    # write column headings
+    table.cell(0, 0).text = '績效行'
+    table.cell(0, 1).text = '件數'
+    table.cell(0, 2).text = '逾放金額'
+    table.cell(0, 3).text = '逾放比'
+    table.cell(0, 4).text = '大額案件'
+    table.cell(0, 5).text = '備註' 
+    table.cell(0, 6).text = '法催進度' 
+    
+    
+    for i in range(len(notice_data)):
+        if i %2==0:
+            table.cell(2, i).text = str(round(house_data[i]/1000000,1))
+        else:
+            table.cell(2, i).text = str(house_data[i])
+    return slide_con
+
+prs = Presentation('基準日1121130逾催呆督導月報_附件原檔.pptx')
+df=pd.read_excel('附件_信貸11211.xlsx',sheet_name='金額&期數(草稿)')
+df_house=pd.read_excel('附件_房貸11211.xlsx',sheet_name='金額&期數(草稿)')
+#df_notice=pd.read_excel('03_大額_11211(Mail)_彙總各區回覆.xlsx',sheet_name='房貸')
+df=df.fillna(0)
+df_house=df_house.fillna(0)
+execel_index=1
+for i in range(3,26,1):
+    title_only_slide_layout = prs.slide_layouts[5]
+    slide = prs.slides[i]
+    shapes = slide.shapes
+    data=df.loc[execel_index][2:10]
+    data_money=df.loc[execel_index][13:21]
+    house_data=df_house.loc[execel_index][2:8]
+    house_data_money=df_house.loc[execel_index][11:17]
+    if i%2==1:
+        
+        slide=create_house_table(slide,house_data)
+        slide=create_house_moneytable(slide,house_data_money)
+    else:
+        slide=create_person_table(slide,data)
+        slide=create_person_moneytable(slide,data_money)
+        execel_index+=1
+
+prs.save('test.pptx')
+
